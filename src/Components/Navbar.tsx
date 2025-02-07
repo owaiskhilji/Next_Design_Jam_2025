@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation"
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
-import { CgProfile } from "react-icons/cg";
 import { RiSearchFill } from "react-icons/ri";
  import '@/app/globals.css'
 export default function Navbar() {
@@ -93,11 +92,10 @@ router.push(`/product/search/${searchValue}`)
             <IoIosSearch size={25} />
           </li>
           <li onClick={()=>router.push("/wishcart")}>
-            {/* <MdOutlineShoppingCart  /> */}
             <FaRegHeart size={25} />
           </li>
           <li>
-            <CgProfile size={25} />
+            <MdOutlineShoppingCart  />
           </li>
         </ul>
       </div>

@@ -9,13 +9,14 @@ interface Product {
 }
 
 interface Order {
+  _id:string
   products: Product[];
   orderNumber:string;
   orderdate: string; 
   totalprice: number; 
 }
 
-export default function page(){
+export default function Page(){
     const [checkoutproducts, setcheckoutproducts] = useState<Order[]>([]);
     const [customername, setcustomername] = useState("");
     const [email, setEmail] = useState("");
@@ -25,7 +26,7 @@ export default function page(){
     const [province, setprovince] = useState("");
     const [postalcode, setpostalcode] = useState("");
     
-    const orderIds :any = checkoutproducts.map((order:any) => order._id);
+    const orderIds :string[] = checkoutproducts.map((order) => order._id);
     
 console.log("All Order IDs:", orderIds[0]);
   useEffect(() => {
@@ -37,12 +38,10 @@ console.log("All Order IDs:", orderIds[0]);
         }
 
         const data: Order[] = await response.json();
-         setcheckoutproducts((prev:any) => {
+         setcheckoutproducts((prev:Order[]) => {
         return JSON.stringify(prev) === JSON.stringify(data) ? prev : data;
       });
         
-      
-      // console.log(data)
       } catch (err) {
         console.error("Error fetching data:", err);
       }
@@ -58,8 +57,6 @@ console.log("All Order IDs:", orderIds[0]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // const orderId = (e.target as HTMLFormElement).dataset.orderId;
-    // console.log("ORDERID", orderId)
     const customerData = {
       customername:customername,
       number:number,

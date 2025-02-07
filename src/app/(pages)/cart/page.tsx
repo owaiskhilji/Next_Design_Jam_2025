@@ -13,7 +13,7 @@ interface CartItem {
   }
 
 
-export default function page(){
+export default function Page(){
       const [addtocartData,setaddtocartData]=useState<CartItem[]>([])
     const [total , setTotal ] = useState(0)
     const [loading , setloading ] = useState(true)
@@ -24,10 +24,10 @@ function getLocalStorageData(){
       const getData = localStorage.getItem("addtocart")
        if(getData){
             const parseData = JSON.parse(getData)
-            const addItemData = parseData.map((item:any)=>(
+            const addItemData = parseData.map((item:CartItem[])=>(
                 {
                     ...item ,
-                    quantity:1
+                    quantity: 1
                 }
             ))
             setaddtocartData(addItemData)
@@ -42,7 +42,7 @@ function getLocalStorageData(){
 
 
     function handleQunantityChange(index :number ,operator: "increment"| "decrement"){
-        setaddtocartData((preData:any[])=>{
+        setaddtocartData((preData:CartItem[])=>{
         const updateData = preData.map((item,i:number)=>{
           if(i === index){
             const newQuantity = operator === "increment"? item.quantity + 1 : item.quantity - 1
@@ -59,7 +59,7 @@ function getLocalStorageData(){
     
     
         function handleSizeChange(index :number ,size:string){
-        setaddtocartData((preData:any[])=>{
+        setaddtocartData((preData:CartItem[])=>{
         const updateData = preData.map((item,i:number)=>{
           if(i === index){
             return {...item, selectedsize:size}
@@ -79,7 +79,7 @@ useEffect(()=>{
 
 
 
-        function calculateTotal(item:any){
+        function calculateTotal(item:CartItem[]){
             const totalAmount = item.reduce((total:number,item:any)=>total + item.quantity * item.price,0)
         setTotal(totalAmount)
         }
