@@ -18,7 +18,7 @@ interface ProductDetail {
 
 
 
-export default function ProductPage({ params }:any) {
+export default function Page({ params }:any) {
     const {id}= params;
     const [product, setProduct] = useState<ProductDetail>();
     const [loading, setLoading] = useState(true);

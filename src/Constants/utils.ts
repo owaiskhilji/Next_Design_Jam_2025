@@ -1,6 +1,6 @@
 import sanityClient from "../app/(use_sanity)/sanity/sanity.client"
 
-export const uploadImage = async (imageUrl:any) => {
+export const uploadImage = async (imageUrl) => {
     try {
         console.log(`Uploading image: ${imageUrl}`);
     
