@@ -2,28 +2,36 @@
 import React,{useState,useContext,useEffect} from "react"
 import Link from "next/link";
 import { GiToggles } from "react-icons/gi";
+import  Image  from "next/image";
 import ProductContext from "@/Context/ProductContext"
 
-
+interface ProductDetail {
+  _id:string;
+  name: string;
+  price: number
+  category:string
+  imageUrl: string;
+  discountPercent:number
+}
 export default function Page() {
 const [key , setkey] = useState("All")
 const [price , setprice] = useState(300)
-const [getAllData, setGetAllData] = useState<any[]>([]);
-const [filter, setfilter] = useState<any[]>([]);
+const [getAllData, setGetAllData] = useState<ProductDetail[]>([]);
+const [filter, setfilter] = useState<ProductDetail[]>([]);
 const [filterPop, setfilterPop] = useState<boolean>(false);
     
 
 
-const value:any = useContext(ProductContext)
+const value = useContext(ProductContext)
 const fetchAllData = value?.getdata
  const dataCategory:string[] =["All","jeans","hoodie","shirt","tshirt","short"]
 
 
 function applyFilter(){
-const filtered = 
+const filtered:ProductDetail[] = 
 key === "All"?
-getAllData.filter((item: any) => item.price <= price) :
-  getAllData.filter((fil:any)=>fil.category === key && fil.price <= price)
+getAllData.filter((item) => item.price <= price) :
+  getAllData.filter((fil)=>fil.category === key && fil.price <= price)
   setfilter(filtered)       
   setfilterPop(true); // Set filter applied state   
 }
@@ -89,7 +97,7 @@ getAllData.filter((item: any) => item.price <= price) :
               <ul className="space-y-2">
               {
                dataCategory && dataCategory.length > 0 ? (
-                dataCategory.map((filter:any,i:number)=>{
+                dataCategory.map((filter:string,i:number)=>{
                 return(
                   <li key={i}
                   onClick={()=>setkey(filter)}
@@ -158,24 +166,20 @@ getAllData.filter((item: any) => item.price <= price) :
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
         {filter && filter.length > 0  ?  (
-          filter.map((item :any, index:number) => (
+          filter.map((item :ProductDetail, index:number) => (
           <div
             key={index}
             className="bg-white w-full max-w-sm overflow-hidden font-[sans-serif] mt-4 shadow-md rounded-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
           >
             <Link href={`/product/detail/${item._id}`}>
             <div className="md:min-h-[256px] relative">
-              {/* <Image
+               <Image
                 alt={item.name || "Product image"}
                 src={item.imageUrl}
                 className="w-full object-cover"
-                 layout="fill"
-              /> */}
-              <img
-                alt={item.name || "Product image"}
-                src={item.imageUrl}
-               className="w-full object-cover"
-              />
+                 fill
+              /> 
+              
             </div>
 
             <div className="p-6 space-y-4">

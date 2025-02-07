@@ -2,12 +2,29 @@
 import Swal from "sweetalert2";
 import { useEffect, useState } from 'react';
 import {useRouter} from "next/navigation"
+import Image from "next/image"
+
+interface ProductDetail {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+  discountPercent: number;
+  category: string;
+  colors: [];
+  sizes: [];
+}
+
+
+
 export default function ProductPage({ params }:any) {
     const {id}= params;
-    const [product, setProduct] = useState<any>(null);
+    const [product, setProduct] = useState<ProductDetail>();
     const [loading, setLoading] = useState(true);
     const [selectedColor, setSelectedColor] = useState(null);
-const router = useRouter()
+
+    const router = useRouter()
 
 
     useEffect(() => {
@@ -69,7 +86,12 @@ if (loading) return <div className="h-screen mt-28 flex justify-center "><span c
           <div className="w-full lg:sticky top-0 lg:col-span-3">
             <div className="flex flex-row gap-2">
               <div className="flex-1">
-                <img src={product.imageUrl} alt="Product" className="w-full aspect-[750/800] object-top object-cover" />
+                 <Image
+                                 alt={product.name || "Product image"}
+                                 src={product.imageUrl}
+                                 className="w-full object-cover"
+                                  fill
+                               /> 
               </div>
             </div>
           </div>
@@ -108,7 +130,7 @@ if (loading) return <div className="h-screen mt-28 flex justify-center "><span c
               </div>
               <div className="flex items-center flex-wrap gap-4 mt-6">
                 <h4 className="text-gray-800 text-2xl font-bold">${product.price}</h4>
-                <p className="text-red-600 bg-red-300 px-1  text-sm">-{product.discountPercent}%<span className="text-sm text-black ml-1.5">{product.isNew}</span></p>
+                <p className="text-red-600 bg-red-300 px-1  text-sm">-{product.discountPercent}%</p>
               </div>
             </div>
 

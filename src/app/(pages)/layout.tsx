@@ -4,13 +4,15 @@ import Navbar from "@/Components/Navbar";
 import ProductContext from "@/Context/ProductContext"
 import React,{useEffect, useState} from "react";
 
-export default function layout({children}:any){
+
+
+export default function Layout({children}:any){
     
     const [getdata , setgetData] = useState<any[]>([])
     const [getdataLoaded , setgetdataLoaded] = useState<boolean>(false)
  
     useEffect(()=>{
-    const storedData: any = localStorage.getItem("productData")
+    const storedData = localStorage.getItem("productData")
     if (storedData) {
     setgetData(JSON.parse(storedData))
     }

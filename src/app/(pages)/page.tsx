@@ -6,33 +6,36 @@ import Bottomcart from "@/Components/Bottomcart";
 import React, { useState, useEffect,useContext } from "react";
 import { useRouter } from "next/navigation";
 import  Link  from "next/link";
+import  Image  from "next/image";
 import ProductContext from "@/Context/ProductContext"
 import dotenv from 'dotenv'
 dotenv.config()
 interface Product {
+  _id:string;
   name: string;
-  price: number;
-  imageURL: string;
+  price: number
+  imageUrl: string;
+  discountPercent:number
 }
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
-  const value :any = useContext(ProductContext)
+  const value  = useContext(ProductContext)
  const router = useRouter()
  
-  const handle =(e:any)=>{
+ const handle =()=>{
     router.push("/product")
     value.setgetData(products)
   }
-  const handle2 =(e:any)=>{
+  const handle2 =()=>{
     router.push("/product")
     value.setgetData(products)
   }
+
   
   useEffect(() => {
     async function fetchProducts() {
       try {
-        // const response = await fetch(`process.env.NEXT_PUBILC_API_URL/product`);
         const response = await fetch(`/api/product`);
         console.log("respo",response)
         if (!response.ok) {
@@ -68,24 +71,20 @@ NEW ARRIVALS
       </div>
     <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
         { limitedProducts.length > 0  ?  (
-        limitedProducts.map((item :any, index:number) => (
+        limitedProducts.map((item:Product, index:number) => (
           <div
             key={index}
             className="bg-white w-full max-w-sm overflow-hidden font-[sans-serif] mt-4 shadow-md rounded-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
           >
             <Link href={`/product/detail/${item._id}`}>
             <div className="md:min-h-[256px] relative">
-              {/* <Image
+               <Image
                 alt={item.name || "Product image"}
                 src={item.imageUrl}
                 className="w-full object-cover"
-                 layout="fill"
-              /> */}
-              <img
-                alt={item.name || "Product image"}
-                src={item.imageUrl}
-               className="w-full object-cover"
-              />
+                 fill
+              /> 
+              
             </div>
 
             <div className="p-6 space-y-4">
@@ -130,7 +129,7 @@ TOP SELLING
       </div>
     <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
         { sencondLimitedProducts.length > 0 ?(
-          sencondLimitedProducts.map((item :any, index:number) => (
+          sencondLimitedProducts.map((item :Product, index:number) => (
         
             <div
             key={index}
@@ -138,17 +137,13 @@ TOP SELLING
             >
             <Link href={`/product/detail/${item._id}`}>
             <div className=" md:min-h-[256px] relative">
-              {/* <Image
+               <Image
                 alt={item.name || "Product image"}
                 src={item.imageUrl}
                 className="w-full object-cover"
-                layout="fill"
-                /> */}
-              <img
-                alt={item.name || "Product image"}
-                  src={item.imageUrl}
-                className="w-full object-cover"
-                />
+                fill
+                /> 
+              
             </div>
 
             <div className="p-6 space-y-4">

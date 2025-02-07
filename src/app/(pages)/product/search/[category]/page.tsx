@@ -1,9 +1,21 @@
 "use client"
 import { useEffect, useState } from 'react';
 import Link from 'next/link'
+import  Image  from "next/image";
+
+
+interface Product {
+  _id:string;
+  name: string;
+  price: number
+  imageUrl: string;
+  discountPercent:number
+}
+
+
 export default function ProductPage({ params }:any) {
     const {category}= params;
-     const [product, setProduct] = useState<any>([]);
+     const [product, setProduct] = useState<Product[]>([]);
      const [loading, setLoading] = useState(true);
 console.log("ID",category)
 console.log("product",product)
@@ -36,18 +48,21 @@ console.log("product",product)
 </div>
 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
 {product && product.length > 0  ?  (
-  product.map((item :any, index:number) => (
+  product.map((item :Product, index:number) => (
   <div
     key={index}
     className="bg-white w-full max-w-sm overflow-hidden font-[sans-serif] mt-4 shadow-md rounded-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
   >
     <Link href={`/product/detail/${item._id}`}>
     <div className="md:min-h-[256px] relative">
-      <img
-        alt={item.name || "Product image"}
-        src={item.imageUrl}
-       className="w-full object-cover"
-      />
+      
+             <Image
+                alt={item.name || "Product image"}
+                src={item.imageUrl}
+                className="w-full object-cover"
+                fill
+                /> 
+
     </div>
 
     <div className="p-6 space-y-4">

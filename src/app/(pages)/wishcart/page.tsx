@@ -1,9 +1,20 @@
 "use client"
 import React,{useEffect,useState} from "react"
 import {useRouter} from "next/navigation"
-import Image from "next/image"
-export default function page(){
-const [wishData,setWishData]=useState<any>([])
+import  Image  from "next/image";
+
+
+interface WishData {
+  _id:string;
+  name: string;
+  price: number
+  imageUrl: string;
+  description:string
+  category:string
+}
+
+export default function Page(){
+const [wishData,setWishData]=useState<WishData[]>([])
 
 const router = useRouter()
 
@@ -15,7 +26,6 @@ function getLocalStorageData(){
             setWishData(JSON.parse(getData))
     }
         if(!getData){
-            // setWishData(JSON.parse(getData))
             console.log("data is not get")
         }}
         getLocalStorageData()
@@ -30,7 +40,7 @@ function getLocalStorageData(){
           <div className="lg:col-span-2 space-y-6">
             {
               wishData && wishData.length > 0 ? (
-wishData.map((item:any,e:number)=>(
+wishData.map((item:WishData,e:number)=>(
               <div
               key={e}
               className="p-2 bg-white shadow-[0_2px_9px_-3px_rgba(61,63,68,0.3)] relative">
@@ -38,8 +48,14 @@ wishData.map((item:any,e:number)=>(
     <div 
     className="grid sm:grid-cols-2 items-center gap-4">
  <div className="bg-gradient-to-tr from-gray-300 via-gray-100 flex items-center justify-center to-gray-50 w-full h-full p-4 shrink-0 text-center">
-        {/* <Image src={item.imageUrl} className="w-56 h-full object-contain inline-block" alt="product" /> */}
-        <img src={item.imageUrl} className="w-56 h-full object-contain inline-block" alt="product" />
+
+<Image
+                alt={item.name || "Product image"}
+                src={item.imageUrl}
+                className="w-full object-cover"
+                fill
+                /> 
+
       </div>
 
       <div className="p-2">
@@ -70,7 +86,7 @@ wishData.map((item:any,e:number)=>(
             View details
           </button>
           <button 
-          onClick={()=>localStorage.removeItem(item)}
+          onClick={()=>localStorage.removeItem(item._id)}
           type="button" className="bg-transparent hover:bg-gray-100 flex items-center justify-center py-3 text-gray-800 text-sm">
             <svg xmlns="http://www.w3.org/2000/svg" className="w-3 fill-current mr-3 inline-block" viewBox="0 0 390 390">
               <path d="M30.391 318.583a30.37 30.37 0 0 1-21.56-7.288c-11.774-11.844-11.774-30.973 0-42.817L266.643 10.665c12.246-11.459 31.462-10.822 42.921 1.424 10.362 11.074 10.966 28.095 1.414 39.875L51.647 311.295a30.366 30.366 0 0 1-21.256 7.288z" data-original="#000000"></path>

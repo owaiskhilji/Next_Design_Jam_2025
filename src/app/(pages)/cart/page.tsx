@@ -1,6 +1,8 @@
 "use client"
 import React , {useEffect,useState} from "react"
 import {useRouter} from "next/navigation"
+import  Image  from "next/image";
+
 
 interface CartItem {
     id: number;
@@ -152,7 +154,14 @@ const checkOutButton = async(addtocartData:CartItem[],total:number)=>{
                     className="grid grid-cols-3 items-center gap-4">
                         <div className="col-span-2 flex items-center gap-4">
                             <div className="w-24 h-24 shrink-0 bg-white p-2 rounded-md">
-                                <img src={item.imageUrl} className="w-full h-full object-contain" />
+                 <Image
+                 alt={item.name || "Product image"}
+                 src={item.imageUrl}
+                 className="w-full object-cover"
+                  fill
+                                 />                         
+                         
+                         
                             </div>
 
                             <div>
@@ -236,7 +245,9 @@ const checkOutButton = async(addtocartData:CartItem[],total:number)=>{
 
                 <div className="mt-8 space-y-2">
                     <button
-                    onClick={()=>checkOutButton(addtocartData,total)}
+                    onClick={()=>{checkOutButton(addtocartData,total)
+                        router.push("/checkout")
+                    }}
                      type="button" className="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-black hover:bg-stone-300 hover:text-black text-stone-300 rounded-md">Checkout</button>
                     <button 
                     onClick={()=>router.push("/product")}

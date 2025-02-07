@@ -1,5 +1,8 @@
 "use client"
 import React, { useState, useEffect} from "react";
+import Image from "next/image"
+
+
 interface Product {
   name: string;
   size: string;
@@ -126,7 +129,13 @@ console.log("All Order IDs:", orderIds[0]);
                { order.products.map((cart:any,i:number)=>(
                 <div key={i} className="flex items-start gap-4">
                   <div className="w-32 h-28 max-lg:w-24 max-lg:h-24 flex p-3 shrink-0 bg-gray-200 rounded-md">
-                    <img src={cart.imageUrl} className="w-full object-contain" />
+                  <Image
+                                  alt={cart.name || "Product image"}
+                                  src={cart.imageUrl}
+                                  className="w-full object-cover"
+                                  fill
+                                  /> 
+                  
                   </div>
                   <div className="w-full">
                     <h3 className="text-sm lg:text-base text-gray-800">{cart.name}</h3>

@@ -1,6 +1,6 @@
 "use client"
 import React , {createContext} from "react"
 
-const ProductContext= createContext(null)
+const ProductContext= createContext()
 
 export default ProductContext 
