@@ -11,7 +11,7 @@ export default function Navbar() {
   const router = useRouter()
  
 
-  function handle(e:any){
+  function handle(e:React.ChangeEvent<HTMLInputElement>){
     const target = e.target as HTMLInputElement
     setserchValue(target.value)
    

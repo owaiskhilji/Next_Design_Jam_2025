@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect} from "react";
+import { useState, useEffect} from "react";
 import Image from "next/image"
 
 
@@ -31,8 +31,8 @@ export default function Page(){
     
     const orderIds :string[] = checkoutproducts.map((order) => order._id);
     
-console.log("All Order IDs:", orderIds[0]);
-  useEffect(() => {
+
+    useEffect(() => {
     async function fetchProducts() {
       try {
         const response = await fetch("http://localhost:3000/api/get-order");
@@ -50,7 +50,7 @@ console.log("All Order IDs:", orderIds[0]);
       }
     }
   fetchProducts();
-  }, []);
+  }, [orderIds]);
 
 
 
@@ -116,7 +116,7 @@ console.log("All Order IDs:", orderIds[0]);
         <div  className="bg-gray-100 sm:h-screen sm:sticky sm:top-0 lg:min-w-[370px] sm:min-w-[300px]">
           
    {checkoutproducts && checkoutproducts.length >0 ?(
-    checkoutproducts.map((order:any,index:number)=>(
+    checkoutproducts.map((order,index:number)=>(
 
           
           <div key={index} className="relative h-full">
@@ -126,7 +126,7 @@ console.log("All Order IDs:", orderIds[0]);
             <div className="px-4 py-8 sm:overflow-auto sm:h-[calc(100vh-60px)]">
               <div className="space-y-4">
 
-               { order.products.map((cart:any,i:number)=>(
+               { order.products.map((cart,i:number)=>(
                 <div key={i} className="flex items-start gap-4">
                   <div className="w-32 h-28 max-lg:w-24 max-lg:h-24 flex p-3 shrink-0 bg-gray-200 rounded-md">
                   <Image

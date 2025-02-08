@@ -2,13 +2,13 @@
 import Footer from "@/Components/Footer";
 import Navbar from "@/Components/Navbar";
 import ProductContext from "@/Context/ProductContext"
-import React,{useEffect, useState} from "react";
+import React,{ReactNode,useEffect, useState} from "react";
 
 
 
-export default function Layout({children}:any){
+export default function Layout({children}: { children: ReactNode }){
     
-    const [getdata , setgetData] = useState<any[]>([])
+    const [getdata , setgetData] = useState([])
     const [getdataLoaded , setgetdataLoaded] = useState<boolean>(false)
  
     useEffect(()=>{

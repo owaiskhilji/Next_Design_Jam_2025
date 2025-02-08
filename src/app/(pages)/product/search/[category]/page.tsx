@@ -11,9 +11,12 @@ interface Product {
   imageUrl: string;
   discountPercent:number
 }
+interface PageParams {
+  category: string;
+ }
 
 
-export default function ProductPage({ params }:any) {
+export default function ProductPage({ params }:{params:PageParams}) {
     const {category}= params;
      const [product, setProduct] = useState<Product[]>([]);
      const [loading, setLoading] = useState(true);

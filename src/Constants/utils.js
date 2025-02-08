@@ -24,7 +24,7 @@ export const uploadImage = async (imageUrl) => {
       }
 };
 
-export const createOrder = async (imageId: string) => {
+export const createOrder = async (imageId) => {
   try {
     const order = {
       _type: "order",

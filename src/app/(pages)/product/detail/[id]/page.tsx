@@ -16,9 +16,10 @@ interface ProductDetail {
   sizes: [];
 }
 
+interface PageParams {
+  id: string; }
 
-
-export default function Page({ params }:any) {
+export default function Page({ params }:{params :PageParams}) {
     const {id}= params;
     const [product, setProduct] = useState<ProductDetail>();
     const [loading, setLoading] = useState(true);
@@ -41,7 +42,7 @@ export default function Page({ params }:any) {
         }
 
         fetchProductData();
-    }, [id]);
+    }, []);
 
 
 function handleWish(){
@@ -150,7 +151,7 @@ if (loading) return <div className="h-screen mt-28 flex justify-center "><span c
               <div className="mt-6">
                 <h3 className="text-lg font-bold text-gray-800">Colors</h3>
                 <div className="flex flex-wrap gap-4 mt-4">
-              {product.colors.map((color:any, i:number) => (
+              {product.colors.map((color, i:number) => (
         <button
           key={i}
           type="button"

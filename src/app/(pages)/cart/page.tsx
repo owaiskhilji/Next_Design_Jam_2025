@@ -1,5 +1,5 @@
 "use client"
-import React , {useEffect,useState} from "react"
+import {useEffect,useState} from "react"
 import {useRouter} from "next/navigation"
 import  Image  from "next/image";
 
@@ -82,7 +82,7 @@ useEffect(()=>{
 
 
         function calculateTotal(item:CartItem[]){
-            const totalAmount = item.reduce((total:number,item:any)=>total + item.quantity * item.price,0)
+            const totalAmount = item.reduce((total:number,item)=>total + item.quantity * item.price,0)
         setTotal(totalAmount)
         }
         
