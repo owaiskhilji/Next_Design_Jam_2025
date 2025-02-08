@@ -8,35 +8,6 @@ export default function Footer() {
   return (
 <div >
 
-{/* <div className=" block px-20 py-14 space-y-5 md:flex md:justify-between items-center border-2 mx-auto rounded-2xl w-64 md:w-[1300px] md:h-[200px]  bg-black">
-    <div className="font-bold text-2xl md:text-4xl text-white md:w-[600px]">
-      STAY UPTO DATE ABOUT OUR LATEST OFFERS
-    </div>
-    <div className="space-y-4">
-      <label className="flex items-center gap-2 rounded-full border bg-white px-4 py-2 w-full max-w-[300px]">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 16 16"
-          fill="currentColor"
-          className="h-4 w-4 opacity-70">
-          <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
-          <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
-        </svg>
-        <input
-          type="text"
-          className="text-center w-full text-sm outline-none"
-          placeholder="Enter your email address"
-        />
-      </label>
-      <input
-        type="text"
-        placeholder="Subscribe to Newsletter"
-        className="text-center text-sm rounded-full border px-4 py-2 w-full max-w-[300px]"
-      />
-    </div>
-</div> */}
-
-
 
 <footer className="font-sans tracking-wide bg-gray-300 px-10 py-20">
     <div className="flex flex-wrap justify-between gap-10">

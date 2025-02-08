@@ -17,8 +17,8 @@ interface CartItem {
 
 export default function Page(){
       const [addtocartData,setaddtocartData]=useState<CartItem[]>([])
-    const [total , setTotal ] = useState(0)
-    const [loading , setloading ] = useState(true)
+    const [total , setTotal ] = useState<number>(0)
+    const [loading , setloading ] = useState<boolean>(true)
 const router = useRouter()
 
     useEffect(()=>{
@@ -45,7 +45,7 @@ function getLocalStorageData(){
 
     function handleQunantityChange(index :number ,operator: "increment"| "decrement"){
         setaddtocartData((preData:CartItem[])=>{
-        const updateData = preData.map((item,i:number)=>{
+        const updateData = preData.map((item:CartItem,i:number)=>{
           if(i === index){
             const newQuantity = operator === "increment"? item.quantity + 1 : item.quantity - 1
             return {...item, quantity:newQuantity}
@@ -62,7 +62,7 @@ function getLocalStorageData(){
     
         function handleSizeChange(index :number ,size:string){
         setaddtocartData((preData:CartItem[])=>{
-        const updateData = preData.map((item,i:number)=>{
+        const updateData = preData.map((item:CartItem,i:number)=>{
           if(i === index){
             return {...item, selectedsize:size}
           }
@@ -148,7 +148,7 @@ const checkOutButton = async(addtocartData:CartItem[],total:number)=>{
                 <div className="space-y-4">
                     {
                         addtocartData && addtocartData.length > 0 ? (
-                        addtocartData.map((item:any,i:number)=>( 
+                        addtocartData.map((item:CartItem,i:number)=>( 
                     <div 
                     key={i}
                     className="grid grid-cols-3 items-center gap-4">

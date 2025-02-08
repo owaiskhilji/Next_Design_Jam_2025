@@ -1,5 +1,4 @@
 "use client"
-import Swal from "sweetalert2";
 import { useEffect, useState } from 'react';
 import {useRouter} from "next/navigation"
 import Image from "next/image"
@@ -12,37 +11,36 @@ interface ProductDetail {
   imageUrl: string;
   discountPercent: number;
   category: string;
-  colors: [];
-  sizes: [];
+  colors: string[];
+  sizes: string[];
 }
 
 interface PageParams {
   id: string; }
 
 export default function Page({ params }:{params :PageParams}) {
-    const {id}= params;
-    const [product, setProduct] = useState<ProductDetail>();
-    const [loading, setLoading] = useState(true);
-    const [selectedColor, setSelectedColor] = useState(null);
-
-    const router = useRouter()
-
-
-    useEffect(() => {
+  const [product, setProduct] = useState<ProductDetail|null>(null);
+  const [loading, setLoading] = useState(true);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const {id}= params;
+  const router = useRouter()
+  
+  useEffect(() => {
         const fetchProductData = async () => {
             try {
                 const response = await fetch(`/api/product/detail/${id}`);
                 const data = await response.json();
                 setProduct(data);
-            } catch (error) {
-                console.error("Error fetching product data:", error);
-            } finally {
+            }catch {
+              console.error("Error fetching product data");
+          }
+          finally {
                 setLoading(false);
             }
         }
 
         fetchProductData();
-    }, []);
+    }, [id]);
 
 
 function handleWish(){
@@ -53,13 +51,7 @@ function handleWish(){
     const saveData = JSON.stringify(parsedData);
     localStorage.setItem('wishData', saveData);
     return product
-   }
-  Swal.fire({
-    title: "Product Saved!",
-    text: "Your product has been successfully saved.",
-    icon: "success",
-    confirmButtonText: "OK"
-  });
+  }
 }
 function addtocarthandle(){
   router.push("/cart")
@@ -88,8 +80,8 @@ if (loading) return <div className="h-screen mt-28 flex justify-center "><span c
             <div className="flex flex-row gap-2">
               <div className="flex-1">
                  <Image
-                                 alt={product.name || "Product image"}
-                                 src={product.imageUrl}
+                                 alt={product?.name || "Product image"}
+                                 src={product?.imageUrl}
                                  className="w-full object-cover"
                                   fill
                                /> 

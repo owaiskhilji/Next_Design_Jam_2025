@@ -18,20 +18,7 @@ export default function Slider(){
             Shop Now
           </button>
         </div>
-        <div className="flex flex-row flex-wrap justify-center sm:hidden md:hidden mt-5 ml-5">
-  <div>
-    <h1 className="text-3xl md:text-5xl font-semibold ">200+</h1>
-    <p className="text-xs text-stone-500 ">International Brands</p>
-  </div>
-  <div>
-    <h1 className="text-3xl md:text-5xl font-semibold">2,000+</h1>
-    <p className="text-xs text-stone-500">High-Quality Products</p>
-  </div>
-  <div className="mt-3">
-    <h1 className="text-3xl md:text-5xl font-semibold">30,000+</h1>
-    <p className="text-xs text-stone-500">Happy Customers</p>
-  </div>
-</div>
+      
 
 
         {/* Image Section */}
