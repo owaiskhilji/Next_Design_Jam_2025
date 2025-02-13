@@ -41,7 +41,7 @@ router.push(`/product/search/${searchValue}`)
           </div>
           <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow ">
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow md:hidden lg:hidden">
         <li>
           <a>Shop</a>
           <ul className="p-2">
@@ -57,7 +57,7 @@ router.push(`/product/search/${searchValue}`)
       </div>
 
       <div className="navbar-start hidden md:flex lg:flex">
-    <ul className="menu menu-horizontal px-1">
+    <ul className="menu menu-horizontal px-1 hidden md:flex lg:flex">
       <li>
         <details>
           <summary>Shop</summary>
@@ -71,7 +71,7 @@ router.push(`/product/search/${searchValue}`)
       <li><a>Brands</a></li>
     </ul>
   </div>
-      <div className="ser-div flex items-center gap-4 ">
+      <div className="ser-div flex items-center gap-4">
         <div className=" hidden md:border-2 md:rounded-md md:flex items-center px-2 ">
           <input
             type="text"
@@ -95,7 +95,7 @@ router.push(`/product/search/${searchValue}`)
             <FaRegHeart size={25} />
           </li>
           <li>
-            <MdOutlineShoppingCart  />
+            <MdOutlineShoppingCart size={25} />
           </li>
         </ul>
       </div>
